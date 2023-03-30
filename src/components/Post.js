@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import Author from './Author'
+import Comments from './Comments'
 
 class Post extends Component {
     render() {
@@ -18,6 +19,7 @@ class Post extends Component {
                     email='emilioeiji@gmail.com'
                     nickname='Emilio Eiji'
                 />
+                <Comments comments={this.props.comments} />
             </View>
         )
     }
