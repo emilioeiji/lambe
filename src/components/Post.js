@@ -9,6 +9,7 @@ import {
 
 import Author from './Author'
 import Comments from './Comments'
+import AddComent from './AddComment'
 
 class Post extends Component {
     render() {
@@ -20,6 +21,7 @@ class Post extends Component {
                     nickname='Emilio Eiji'
                 />
                 <Comments comments={this.props.comments} />
+                <AddComent />
             </View>
         )
     }
