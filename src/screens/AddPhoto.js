@@ -11,10 +11,8 @@ import {
     ScrollView,
     Alert
 } from 'react-native'
-
-// import { ImagePickerResponse } from 'react-native-image-picker'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
-import RNFetchBlob from 'rn-fetch-blob';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class AddPhoto extends Component {
     state = {
@@ -22,37 +20,29 @@ class AddPhoto extends Component {
         comment: '',
     }
 
-    // pickImage = () => {
-    //     ImagePickerResponse.showImagePicker({
-    //         title: 'Escolha a imagem',
-    //         maxHeight: 600,
-    //         maxWidth: 800
-    //     }, res => {
-    //         if (!res.didCancel) {
-    //             this.setState({ image: { uri: res.uri, base64: res.data }})
-    //         }
-    //     })
-    // }
-
     pickImage = () => {
-        launchImageLibrary(
-            {
-                mediaType: 'photo',
-                quality: 0.5,
-            },
-            response => {
-                console.log('Resposta: ', response)
-                if (response) {
-                    RNFetchBlob.fs.readFile(response.uri, 'base64')
-                        .then(base64Data => {
-                            this.setState({ image: { uri: response.uri, base64: base64Data }});
-                        })
-                        .catch(error => console.log(error))
-                } else {
-                    console.log("URI da imagem está vazia ou indefinida");
-                }
+
+        const options = {
+            mediaType: 'photo',
+            includeBase64: true,
+            quality: 0.5,
+        }
+
+        launchImageLibrary( options ,response => {
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker')
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error)
+            } else {
+                console.log('ImagePicker URI: ', response.assets[0].fileName)
+                const source = { uri: response.assets[0].uri }
+                this.setState({
+                    image: source,
+                    base64: response.assets[0].base64
+                })
             }
-        )
+        })
     }
 
     save = async () => {
@@ -64,11 +54,19 @@ class AddPhoto extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.title}>Compartilhe uma imagem</Text>
-                    <View style={styles.imageContainer}>
-                        <Image
+                    <View style={[styles.imageContainer, !this.state.image && styles.iconCamera]}>
+                        {this.state.image ? 
+                            <Image
                             source={this.state.image}
                             style={styles.image}
                         />
+                        :
+                            <Icon 
+                                name='camera'
+                                size={50}
+                                color='#aaa'
+                            />
+                        }
                     </View>
                     <TouchableOpacity
                         onPress={this.pickImage}
@@ -113,6 +111,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').width * 3 / 4,
         backgroundColor: '#eee',
         marginTop: 10,
+        alignItems: 'center'
     },
     image: {
         width: Dimensions.get('window'). width,
@@ -131,6 +130,10 @@ const styles = StyleSheet.create({
     input: {
         marginTop: 20,
         width: '90%'
+    },
+    iconCamera: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 
