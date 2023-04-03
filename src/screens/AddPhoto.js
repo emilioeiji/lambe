@@ -108,14 +108,14 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         width: '90%',
-        height: Dimensions.get('window').width * 3 / 4,
+        height: Dimensions.get('window').width / 2,
         backgroundColor: '#eee',
         marginTop: 10,
         alignItems: 'center'
     },
     image: {
-        width: Dimensions.get('window'). width,
-        height: Dimensions.get('window').width * 3 / 4,
+        width: '100%',
+        height: Dimensions.get('window').width / 2,
         resizeMode: 'center'
     },
     buttom: {
