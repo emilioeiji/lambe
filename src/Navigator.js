@@ -9,6 +9,7 @@ import Feed from './screens/Feed'
 import AddPhoto from './screens/AddPhoto'
 import Profile from './screens/Profile'
 import Login from './screens/Login'
+import Register from './screens/Register'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -71,16 +72,20 @@ export default function Navigator(props) {
         <Stack.Navigator
             initialRouteName="Tab"
         >
-          <Stack.Screen
-            name='Auth'
-            component={Login}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Tab'
-            component={TabNavigator}
-            options={{ headerShown: false }}
-          />
+            <Stack.Screen
+                name='Auth'
+                component={Login}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name='Tab'
+                component={TabNavigator}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name='Register'
+                component={Register}
+            />
         </Stack.Navigator>
       </NavigationContainer>
     )

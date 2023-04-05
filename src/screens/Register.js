@@ -7,49 +7,43 @@ import {
     TextInput
 } from 'react-native'
 
-class Login extends Component {
+class Register extends Component {
     state = {
+        name: '',
         email: '',
         password: ''
     }
 
-    login = () => {
-        this.props.navigation.navigate('Tab', { screen: 'Profile' })
-    }
 
-    render () {
+    render() {
         return (
             <View style={styles.container}>
                 <TextInput
-                    placeholder='Email'
+                    placeholder='Nome'
                     style={styles.input}
-                    autoFocus={true}
-                    keyboardType='email-address'
-                    value={this.state.email}
-                    onChangeText={email => this.setState({ email })}
+                    autoFocus={true} 
+                    value={this.state.name}
+                    onChangeText={name => this.setState({ name })}
                 />
                 <TextInput
-                    placeholder='Senha'
+                    placeholder='Email'
+                    style={styles.input}
+                    value={this.state.email}
+                    onChangeText={email => this.setState({ email })}
+                    keyboardType='email-address'
+                />
+                <TextInput
+                    placeholder='Password'
                     style={styles.input}
                     secureTextEntry={true}
                     value={this.state.password}
-                    onChangeText={password => this.setState({ password }) }
+                    onChangeText={password => this.setState({ password })}
                 />
                 <TouchableOpacity
-                    onPress={this.login}
+                    onPress={() => {}}
                     style={styles.buttom}
                 >
-                    <Text style={styles.buttomText}>
-                        Login
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {this.props.navigation.navigate('Register')}}
-                    style={styles.buttom}
-                >
-                    <Text style={styles.buttomText}>
-                        Criar nova conta...
-                    </Text>
+                    <Text style={styles.buttomText}>Salvar</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -58,7 +52,7 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -77,8 +71,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         height: 40,
         borderWidth: 1,
-        borderColor: '#333'
+        borderColor: '#333',
+        paddingLeft: 15
     }
+
 })
 
-export default Login
+export default Register
