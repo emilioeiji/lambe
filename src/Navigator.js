@@ -60,7 +60,7 @@ const TabNavigator = (props) => (
         />
         <Tab.Screen
             name='Profile'
-            component={Profile}
+            component={Login}
             options={{ title: 'Profile'}}
         />
     </Tab.Navigator>
