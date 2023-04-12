@@ -72,8 +72,18 @@ const styles = StyleSheet.create({
     avatar: {
         width: 30,
         height: 30,
-        marginLeft: 10
+        marginLeft: 10,
+        borderRadius: 15
     }
 })
 
-export default Header
+const mapStateToProps = ({ user }) => {
+    return {
+        email: user.email,
+        name: user.name,
+    }
+}
+
+export default connect(mapStateToProps)(Header)
+
+// export default Header

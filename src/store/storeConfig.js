@@ -1,4 +1,4 @@
-import { legacy_createStore, combineReducers } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import userReducer from './reducers/user'
 
 const reducers = combineReducers({
@@ -6,7 +6,7 @@ const reducers = combineReducers({
 })
 
 const storeConfig = () => {
-    return legacy_createStore(reducers)
+    return createStore(reducers)
 }
 
 export default storeConfig
