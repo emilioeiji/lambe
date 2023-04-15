@@ -4,7 +4,6 @@ import {
     View,
     Image,
     Dimensions,
-    Text
 } from 'react-native'
 
 import Author from './Author'
@@ -21,7 +20,7 @@ class Post extends Component {
                     nickname={this.props.nickname}
                 />
                 <Comments comments={this.props.comments} />
-                <AddComent />
+                <AddComent postId={this.props.id} />
             </View>
         )
     }
