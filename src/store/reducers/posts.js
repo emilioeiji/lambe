@@ -44,6 +44,7 @@ const reducer = (state = initialState, action) => {
                             post.comments = [action.payload.comment]
                         }
                     }
+                    return post
                 })
             }
         default:
