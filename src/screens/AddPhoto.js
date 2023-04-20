@@ -43,7 +43,6 @@ class AddPhoto extends Component {
             } else if (response.error) {
                 console.log('ImagePicker Error: ', response.error)
             } else {
-                console.log('ImagePicker URI: ', response.assets[0].base64)
                 const source = { uri: response.assets[0].uri }
                 this.setState({
                     image: { 
